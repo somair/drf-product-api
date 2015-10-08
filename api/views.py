@@ -1,4 +1,4 @@
-from core.models import Product, Review
+from core.models import Product, Review, Order
 from rest_framework import viewsets
 from api import serializers
 
@@ -54,3 +54,13 @@ class ProductReviewViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return Product.objects.get(**self.kwargs).review_set.all().order_by('-id')
+
+
+class OrderViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows orders to be viewed or created.
+    """
+    queryset = Order.objects.all()
+    paginate_by = 10
+
+    serializer_class = serializers.OrderSerializer

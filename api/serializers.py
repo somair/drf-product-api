@@ -1,4 +1,4 @@
-from core.models import Product, Review
+from core.models import Product, Review, Order
 from rest_framework import serializers
 
 
@@ -37,3 +37,10 @@ class ReviewPostSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Review
+
+
+class OrderSerializer(serializers.HyperlinkedModelSerializer):
+    order_id = serializers.ReadOnlyField(source='pk')
+
+    class Meta:
+        model = Order
