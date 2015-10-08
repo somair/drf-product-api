@@ -10,3 +10,10 @@ class Product(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class Review(models.Model):
+    product = models.ForeignKey(Product)
+    full_name = models.CharField(max_length=200)
+    rating = models.IntegerField()
+    comment = models.TextField(max_length=500)
