@@ -44,3 +44,19 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Order
+
+
+class OrderListSerializer(OrderSerializer):
+
+    class Meta:
+        model = Order
+        fields = ('order_id', 'url')
+
+
+class OrderPostSerializer(serializers.ModelSerializer):
+    """
+    Use this serializer for POST as there is a requirement with the hyperlinked modelserializer to pass the full URL
+    rather than the product id.
+    """
+    class Meta:
+        model = Order

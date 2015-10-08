@@ -31,11 +31,17 @@ order_detail = views.OrderViewSet.as_view({
     'get': 'retrieve'
 })
 
+order_list = views.OrderViewSet.as_view({
+    'get': 'list',
+    'post': 'create'
+})
+
 urlpatterns = [
     url(r'product/$', product_list, name='product-list'),
     url(r'product/(?P<pk>[0-9]+)/$', product_detail, name='product-detail'),
     url(r'product/(?P<pk>[0-9]+)/reviews/$', product_review, name='product-reviews'),
     url(r'review/$', review_list, name='review-list'),
     url(r'review/(?P<pk>[0-9]+)/$', review_detail, name='review-detail'),
+    url(r'order/$', order_list, name='order-list'),
     url(r'order/(?P<pk>[0-9]+)/$', order_detail, name='order-detail'),
 ]
