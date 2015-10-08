@@ -1,4 +1,4 @@
-from core.models import Product
+from core.models import Product, Review
 from rest_framework import viewsets
 from api import serializers
 
@@ -27,3 +27,13 @@ class ProductViewSet(DynamicSerializerViewSet):
         'default': serializers.ProductSerializer,
         'list': serializers.ProductListSerializer
     }
+
+
+class ReviewViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows orders to be viewed or created.
+    """
+    queryset = Review.objects.all()
+    paginate_by = 10
+
+    serializer_class = serializers.ReviewSerializer
