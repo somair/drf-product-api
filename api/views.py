@@ -29,11 +29,20 @@ class ProductViewSet(DynamicSerializerViewSet):
     }
 
 
-class ReviewViewSet(viewsets.ModelViewSet):
+class ReviewViewSet(DynamicSerializerViewSet):
     """
     API endpoint that allows orders to be viewed or created.
     """
     queryset = Review.objects.all()
     paginate_by = 10
 
-    serializer_class = serializers.ReviewSerializer
+    serializer_classes = {
+        'default': serializers.ReviewSerializer,
+        'list': serializers.ReviewListSerializer
+    }
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return serializers.ReviewPostSerializer
+
+        return super(ReviewViewSet, self).get_serializer_class()
