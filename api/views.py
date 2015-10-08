@@ -46,3 +46,11 @@ class ReviewViewSet(DynamicSerializerViewSet):
             return serializers.ReviewPostSerializer
 
         return super(ReviewViewSet, self).get_serializer_class()
+
+
+class ProductReviewViewSet(viewsets.ModelViewSet):
+    paginate_by = 10
+    serializer_class = serializers.ReviewSerializer
+
+    def get_queryset(self):
+        return Product.objects.get(**self.kwargs).review_set.all().order_by('-id')

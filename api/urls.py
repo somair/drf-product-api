@@ -23,9 +23,14 @@ review_list = views.ReviewViewSet.as_view({
     'post': 'create'
 })
 
+product_review = views.ProductReviewViewSet.as_view({
+    'get': 'list',
+})
+
 urlpatterns = [
     url(r'product/$', product_list, name='product-list'),
     url(r'product/(?P<pk>[0-9]+)/$', product_detail, name='product-detail'),
+    url(r'product/(?P<pk>[0-9]+)/reviews/$', product_review, name='product-reviews'),
     url(r'review/$', review_list, name='review-list'),
     url(r'review/(?P<pk>[0-9]+)/$', review_detail, name='review-detail'),
 ]
