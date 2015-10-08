@@ -7,3 +7,10 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Product
+
+
+class ProductListSerializer(ProductSerializer):
+
+    class Meta:
+        model = Product
+        fields = ('product_id', 'name', 'url')
